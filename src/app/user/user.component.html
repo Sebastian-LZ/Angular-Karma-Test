@@ -1,7 +1,10 @@
-<button (click)="loadInfo()">
+<h1 id="tittle">{{tittle}}</h1>
+
+<button (click)="loadInfo()" id="download-info">
     Descargar lista de usuarios
 </button>
 
+<br>
 <br>
 
 <input type="text" placeholder="Filtrar usuario por ID" [(ngModel)]="userId">
@@ -9,3 +12,8 @@
 <button (click)="filterUser()">
     Filtrar
 </button>
+<br>
+Resultado de búsqueda : {{userFiltered}}
+<br>
+<br>
+<button id="button-disabled" disabled>Botón inhabilitado</button>

@@ -9,9 +9,13 @@ import { ApiRestService } from '../services/api-rest.service'
 })
 export class UserComponent implements OnInit {
 
+  public userFiltered: User;
   public userId;
+  public tittle = "Bienvenidos a la introducción sobre pruebas con Karma y Jasmine";
+  public dataLoaded;
+  public dataLoadWithError = false;
 
-  constructor(private apiRest: ApiRestService) { }
+  constructor(public apiRest: ApiRestService) { }
 
   ngOnInit(): void {
     this.createUser();
@@ -21,9 +25,11 @@ export class UserComponent implements OnInit {
     this.apiRest.getUsersList().subscribe(
       (response: UserList) => {
         console.log(response.data);
+        this.dataLoaded = response;
       },
       error => {
         console.error(error);
+        this.dataLoadWithError = true;
       }
     )
   }
@@ -31,6 +37,7 @@ export class UserComponent implements OnInit {
   public filterUser() {
     this.apiRest.getById(this.userId).subscribe(
       (response: User) => {
+        this.userFiltered = response;
         console.log(response);
       },
       error => {
